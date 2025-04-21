@@ -1,0 +1,12 @@
+notas_0.txt
+**/*.class
+*.pdf
+*.swp
+.vscode/*
+**/.idea/*
+#Eclipse
+**/.classpath
+**/.project
+*.prefs
+**/config.xml
+.trash/
