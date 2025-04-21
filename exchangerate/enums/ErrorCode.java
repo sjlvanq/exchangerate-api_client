@@ -1,12 +1,14 @@
 package exchangerate.enums;
 
+import exchangerate.Messages;
+
 public enum ErrorCode {
 	
-	UNSUPPORTED_CODE("unsupported-code", "El código de moneda que ha proporcionado no es un código ISO 4217 válido o no está disponible. Ejecute el programa con la opción --list para obtener un listado de códigos válidos."),
-	MALFORMED_REQUEST("malformed-request", "La solicitud enviada no ha podido procesarse."),
-	INVALID_KEY("invalid-key", "No es posible validar la clave de API proporcionada."),
-	INACTIVE_ACCOUNT("inactive-account", "La dirección de correo electrónico con la que ha registrado su cuenta en ExchangeRate-API no ha sido confirmada."),
-	QUOTA_REACHED("quota-reached", "Su cuenta ha alcanzado el límite de solicitudes disponibles para su plan actual.");
+	UNSUPPORTED_CODE("unsupported-code", Messages.get("error.unsupported-code")),
+	MALFORMED_REQUEST("malformed-request",  Messages.get("error.malformed-request")),
+	INVALID_KEY("invalid-key",  Messages.get("error.invalid-key")),
+	INACTIVE_ACCOUNT("inactive-account",  Messages.get("error.inactive-account")),
+	QUOTA_REACHED("quota-reached",  Messages.get("error.quota-reached"));
 	
 	private String errorType;
 	private String errorDesc;
@@ -15,7 +17,7 @@ public enum ErrorCode {
 		this.errorType = code;
 		this.errorDesc = desc;
 	}
-	
+
 	public static String getMessage(String code) {
 	    for (ErrorCode ec : values()) {
 	        if (ec.errorType.equals(code)) {
