@@ -1,18 +1,42 @@
 package exchangerate.dtos;
 
 import java.util.Map;
-import java.util.TreeMap;
+import java.util.HashMap;
 
 import com.google.gson.annotations.SerializedName;
 
 public class Standard extends DatedResponse {
 	@SerializedName("base_code")
-	String baseCode;
+	private final String baseCode;
 	@SerializedName("conversion_rates")
-	Map<String, Double> conversionRates;
-	{conversionRates = new TreeMap<String, Double>();}
+	private final Map<String, Double> conversionRates;
+	public Standard(
+			String result,
+			String errorType,
+			String documentation,
+			String termsOfUse,
+			long timeLastUpdateUnix,
+			long timeNextUpdateUnix,
+			String timeLastUpdateUtc,
+			String timeNextUpdateUtc,
+			Map<String, Double> conversionRates,
+			String baseCode) {
+		super(
+				result,
+				errorType,
+				documentation,
+				termsOfUse,
+				timeLastUpdateUnix,
+				timeNextUpdateUnix,
+				timeLastUpdateUtc,
+				timeNextUpdateUtc
+			);
+		this.conversionRates = new HashMap<>(conversionRates);
+
+		this.baseCode = baseCode;
+	}
 	
-	public String toString() {
+	public final String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(super.toString());
 		sb.append("\nconversion_rates:\n");

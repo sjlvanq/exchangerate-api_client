@@ -4,23 +4,48 @@ import com.google.gson.annotations.SerializedName;
 
 public class PairConversion extends DatedResponse {
 	@SerializedName("base_code")
-	String baseCode;
+	private final String baseCode;
 	@SerializedName("target_code")
-	String targetCode;
+	private final String targetCode;
 	@SerializedName("conversion_rate")
-	double conversionRate;
+	private final double conversionRate;
 	@SerializedName("conversion_result")
-	double conversionResult;
+	private final double conversionResult;
+
+	public PairConversion(
+			String result,
+			String errorType,
+			String documentation,
+			String termsOfUse,
+			long timeLastUpdateUnix,
+			long timeNextUpdateUnix,
+			String timeLastUpdateUtc,
+			String timeNextUpdateUtc,
+			String baseCode,
+			String targetCode,
+			double conversionRate,
+			double conversionResult
+			) {
+		super(result, errorType, documentation, termsOfUse, timeLastUpdateUnix, timeNextUpdateUnix, timeLastUpdateUtc, timeNextUpdateUtc);
+		this.baseCode=baseCode;
+		this.targetCode=targetCode;
+		this.conversionRate=conversionRate;
+		this.conversionResult=conversionResult;
+	}
 	
-	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append(super.toString());
-		sb.append("base_code: "+this.baseCode);
-		sb.append("\ntarget_code: "+this.targetCode);
-		sb.append("\nconversion_rate: "+String.valueOf(this.conversionRate));
-		if(this.conversionResult > 0) {
-			sb.append("\nconversion_result: "+String.valueOf(this.conversionResult));
-		}
-		return sb.toString();
+	public final String toString() {
+	    return """
+	            %s
+	            base_code: %s
+	            target_code: %s
+	            conversion_rate: %.6f
+	            conversion_result: %.6f
+	            """.formatted(
+	                super.toString(),
+	                this.baseCode,
+	                this.targetCode,
+	                this.conversionRate,
+	                this.conversionResult
+	            );
 	}
 }

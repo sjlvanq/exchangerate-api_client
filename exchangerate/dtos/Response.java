@@ -2,18 +2,26 @@ package exchangerate.dtos;
 import com.google.gson.annotations.*;
 
 public abstract class Response {
-	private String result;
+	private final String result;
 	@SerializedName("error-type")
-	private String errorType;
-	private String documentation;
+	private final String errorType;
+	private final String documentation;
 	@SerializedName("terms_of_use")
-	private String termsOfUse;
+	private final String termsOfUse;
 
-	public String getResult() {
+	public Response(String result, String errorType, String documentation, String termsOfUse) {
+		super();
+		this.result = result;
+		this.errorType = errorType;
+		this.documentation = documentation;
+		this.termsOfUse = termsOfUse;
+	}
+
+	public final String getResult() {
 		return result;
 	}
 
-	public String getErrorType() {
+	public final String getErrorType() {
 		return errorType;
 	}
 

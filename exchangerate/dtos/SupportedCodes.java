@@ -4,9 +4,20 @@ import com.google.gson.annotations.SerializedName;
 
 public class SupportedCodes extends Response {
 	@SerializedName("supported_codes")
-	public String[][] supportedCodes;
-	
-	public String toString() {
+	private final String[][] supportedCodes;
+
+	public SupportedCodes(
+			String result,
+			String errorType,
+			String documentation,
+			String termsOfUse,
+			String[][] supportedCodes
+			) {
+		super(result, errorType, documentation, termsOfUse);
+		this.supportedCodes = supportedCodes;
+	}
+
+	public final String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(super.toString()+"\n");
 		for (String[] code : this.supportedCodes) {

@@ -4,19 +4,38 @@ import com.google.gson.annotations.SerializedName;
 
 public abstract class DatedResponse extends Response{
 	@SerializedName("time_last_update_unix")
-	long timeLastUpdateUnix;
+	private final long timeLastUpdateUnix;
 	@SerializedName("time_next_update_unix")
-	long timeNextUpdateUnix;
+	private final long timeNextUpdateUnix;
 	@SerializedName("time_last_update_utc")
-	String timeLastUpdateUtc;
+	private final String timeLastUpdateUtc;
 	@SerializedName("time_next_update_utc")
-	String timeNextUpdateUtc;
+	private final String timeNextUpdateUtc;
+
+	public DatedResponse(
+			String result,
+			String errorType,
+			String documentation,
+			String termsOfUse,
+			long timeLastUpdateUnix,
+			long timeNextUpdateUnix,
+			String timeLastUpdateUtc,
+			String timeNextUpdateUtc
+	) {
+		super(result, errorType, documentation, termsOfUse);
+		this.timeLastUpdateUnix = timeLastUpdateUnix;
+		this.timeNextUpdateUnix = timeNextUpdateUnix;
+		this.timeLastUpdateUtc = timeLastUpdateUtc;
+		this.timeNextUpdateUtc = timeNextUpdateUtc;
+	}
 	
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append(super.toString());
-		sb.append("time_last_update_utc: "+this.timeLastUpdateUtc);
-		sb.append("\ntime_next_update_utc: "+this.timeNextUpdateUtc);
-		return sb.toString();
+		return """
+				%s
+				time_last_update_utc: %s
+				time_next_update_utc: %s
+				""".formatted(super.toString(),
+						this.timeLastUpdateUtc,
+						this.timeNextUpdateUtc);
 	}
 }
